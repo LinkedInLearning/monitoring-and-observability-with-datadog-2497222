@@ -1,0 +1,111 @@
+<%- include ../partials/header %> <%- include ../partials/categories-navbar %>
+
+<div class="container-fluid">
+  <!-- Flash messages -->
+  <% if(successMsg || errorMsg) {%>
+  <div class="row mt-3 mb-3">
+    <div class="col-md-12 m-auto">
+      <% if (successMsg) { %>
+      <div id="success" class="alert alert-success">
+        <%= successMsg %>
+      </div>
+      <% } else { %>
+      <div id="success" class="alert alert-success d-none"></div>
+      <% } %>
+    </div>
+    <div class="col-md-12 m-auto">
+      <% if (errorMsg) { %>
+      <div id="error" class="alert alert-danger">
+        <%= errorMsg %>
+      </div>
+      <% } else { %>
+      <div id="error" class="alert alert-danger d-none"></div>
+      <% } %>
+    </div>
+  </div>
+  <% } %>
+  <!-- Breadcrumbs -->
+  <div class="row mt-2">
+    <div class="col-md-12 m-auto">
+      <%if (breadcrumbs) { %>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <% breadcrumbs.forEach(crumb => { if(!crumb.name.startsWith("?")){%>
+          <li class="breadcrumb-item" aria-current="page">
+            <a href="<%=crumb.url%>"><%= crumb.name %></a>
+          </li>
+          <%}})%>
+        </ol>
+      </nav>
+      <%} %>
+    </div>
+  </div>
+  <!-- Page banner image -->
+
+  <% if(pageName == 'All Products') { %>
+  <div class="text-center hero-container">
+    <img
+      class="d-block w-100 hero-image"
+      src="/images/banner-all-products.jpg"
+    />
+    <div class="hero-text">
+      <h1><%=pageName%></h1>
+    </div>
+  </div>
+  <%} else {%> <%categories.forEach( category => {%> <%if(pageName ==
+  category.title){%>
+  <div class="text-center hero-container">
+    <img
+      class="d-block w-100 hero-image"
+      src="/images/banner-<%=category.slug%>.jpg"
+    />
+    <div class="hero-text">
+      <h1><%=pageName%></h1>
+    </div>
+  </div>
+  <%}%> <%})%> <%}%>
+
+  <hr class="gradient-style" />
+  <!-- Contents -->
+  <div class="row pl-4 pr-4">
+    <% products.forEach((product) => { %>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product-index-box">
+      <div class="single-product d-flex flex-column h-100">
+        <a
+          class="title-link"
+          href="/products/<%=product.category.slug%>/<%=product._id%>"
+        >
+          <img src="<%= product.imagePath %>" alt="Bag" class="img-fluid"
+        /></a>
+        <div class="product-info">
+          <a
+            class="title-link"
+            href="/products/<%=product.category.slug%>/<%=product._id%>"
+          >
+            <h6 class="mt-2 mb-2"><%= product.title %></h6></a
+          >
+          <div class="price">$<%= product.price %></div>
+        </div>
+        <% if(product.available) {%>
+        <a
+          href="/add-to-cart/<%=product._id%>"
+          class="btn btn-block btn-secondary button-style mt-auto mb-2"
+        >
+          Add to Shopping Cart
+        </a>
+        <% } else { %>
+        <a
+          href="#"
+          class="btn btn-block btn-danger button-style-danger mt-2 mb-2"
+        >
+          Sold out
+        </a>
+        <%} %>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+
+  <%- include ../partials/pagination %>
+</div>
+<%- include ../partials/footer %>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% if (pageName) { %>
+    <title>BestBags | <%= pageName %></title>
+    <%} else {%>
+    <title>Shopping Cart</title>
+    <% } %>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://kit.fontawesome.com/91abd10b8f.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Mapbox -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="page-container">
+      <div id="content-wrap">
+    <div class="row nav-container mx-auto">
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="search-container">
+          <form class="form-inline" action="/products/search" method="GET">
+            <input
+              class="search-input"
+              type="search"
+              placeholder="Search"
+              name="search"
+            />
+          </form>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-sm-12 col-xs-12 logo-container">
+        <a href="/">
+          <img class="logo-img img-fluid" src="/images/shop-icon.png" alt="logo" />
+          <h4 class="logo-title">BestBags</h4>
+        </a>
+      </div>
+
+      <div class="col-md-4 col-sm-12 col-xs-12 right-nav">
+        <ul>
+          <li>
+            <a href="/shopping-cart">
+              <i class="fas fa-shopping-cart"></i> <% if(session.cart) { %>
+              <span class="badge badge-pill badge-info"
+                ><%= session.cart.totalQty %></span
+              >
+              <% } else { %>
+              <span class="badge badge-pill badge-info">0</span>
+              <% } %>
+            </a>
+          </li>
+          <% if (login) { %>
+          <li>
+            <a
+              class="dropdown-toggle"
+              href="#"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fas fa-user"></i> Welcome <%=currentUser.username%>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/user/profile">User Account</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/user/logout">Logout</a>
+            </div>
+          </li>
+          <% } else {%>
+          <li>
+            <a href="/user/signup"> Sign Up</a>
+          </li>
+          <li>
+            <a href="/user/signin"> Sign In</a>
+          </li>
+          <% }%>
+        </ul>
+      </div>
+    </div>
+
