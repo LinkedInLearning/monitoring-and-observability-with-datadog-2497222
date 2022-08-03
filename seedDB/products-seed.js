@@ -5,6 +5,7 @@ const Category = require("../models/category");
 const mongoose = require("mongoose");
 const faker = require("faker");
 const connectDB = require("./../config/db");
+const logger = require("./../config/logservice");
 connectDB();
 
 async function seedDB() {
@@ -194,8 +195,14 @@ async function seedDB() {
 
   async function seedProducts(titlesArr, imgsArr, categStr) {
     try {
+
       const categ = await Category.findOne({ title: categStr });
       for (let i = 0; i < titlesArr.length; i++) {
+        const check = await Product.findOne({ title: titlesArr[i] });
+        if(check != null)
+        {
+          return;
+        }
         let prod = new Product({
           productCode: faker.helpers.replaceSymbolWithNumber("####-##########"),
           title: titlesArr[i],
@@ -209,7 +216,7 @@ async function seedDB() {
         await prod.save();
       }
     } catch (error) {
-      logger.error(req, error);
+      console.log(error);
       return error;
     }
   }

@@ -3,15 +3,23 @@ require("dotenv").config({ path: path.join(__dirname, "../.env") });
 const Category = require("../models/category");
 const mongoose = require("mongoose");
 const connectDB = require("./../config/db");
+const logger = require("./../config/logservice");
 connectDB();
 
 async function seedDB() {
   async function seedCateg(titleStr) {
     try {
-      const categ = await new Category({ title: titleStr });
-      await categ.save();
+
+        const check = await Category.findOne({ title: titleStr });
+        if(check != null)
+        {
+          return;
+        }
+        //seed database
+        const categ = await new Category({ title: titleStr });
+        await categ.save();
     } catch (error) {
-      logger.error(req, error);
+      console.log(error);
       return error;
     }
   }
