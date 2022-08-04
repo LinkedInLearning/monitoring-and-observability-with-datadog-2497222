@@ -19,7 +19,7 @@ const ddTracer = tracer.init({
   logInjection: process.env.DD_LOGS_INJECTION,
   profiling: process.env.DD_PROFILING_ENABLED,
   url: process.env.DD_URL
-})
+}) 
 
 const app = express();
 require("./config/passport");
