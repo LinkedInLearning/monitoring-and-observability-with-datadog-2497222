@@ -17,6 +17,7 @@
     "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.6",
     "csurf": "^1.11.0",
+    "dd-trace": "^2.12.1",
     "debug": "~2.6.9",
     "dotenv": "^8.6.0",
     "ejs": "~2.6.1",

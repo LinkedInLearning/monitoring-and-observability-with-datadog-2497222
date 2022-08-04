@@ -1,3 +1,4 @@
+const tracer = require('dd-trace');
 require("dotenv").config();
 const createError = require("http-errors");
 const express = require("express");
@@ -11,6 +12,14 @@ const flash = require("connect-flash");
 const Category = require("./models/category");
 var MongoStore = require("connect-mongo")(session);
 const connectDB = require("./config/db");
+
+const ddTracer = tracer.init({
+  env: process.env.DD_ENV,
+  service: process.env.DD_SERVICE,
+  logInjection: process.env.DD_LOGS_INJECTION,
+  profiling: process.env.DD_PROFILING_ENABLED,
+  url: process.env.DD_URL
+})
 
 const app = express();
 require("./config/passport");
