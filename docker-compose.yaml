@@ -27,5 +27,7 @@ services:
       - DB_PORT=$MONGODB_DOCKER_PORT
     stdin_open: true
     tty: true
+    volumes:
+      - ./combined.log:/usr/src/app/combined.log
 volumes:
   db:
