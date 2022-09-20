@@ -4,6 +4,7 @@ const Product = require("../models/product");
 const Category = require("../models/category");
 var moment = require("moment");
 const logger = require("../config/logservice");
+var StatsD = require('hot-shots');
 
 // GET: display all products
 router.get("/", async (req, res) => {
@@ -124,6 +125,11 @@ router.get("/:slug/:id", async (req, res) => {
   logger.request(req);
   try {
     const product = await Product.findById(req.params.id).populate("category");
+
+    var dogstatsd = new StatsD();
+
+    // Increment a counter.
+    dogstatsd.increment('product.views')
 
     payload = {
       pageName: product.title,
