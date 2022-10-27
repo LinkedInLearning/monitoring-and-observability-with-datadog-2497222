@@ -1,7 +1,10 @@
 # Monitoring and Observability with Datadog
-This is the repository for the LinkedIn Learning course `Monitoring and Observability with Datadog`. The full course is available from [LinkedIn Learning][lil-course-url].
+This is the repository for the LinkedIn Learning course Monitoring and Observability with Datadog. The full course is available from [LinkedIn Learning][lil-course-url].
 
-_See the readme file in the main branch for updated instructions and information._
+![Monitoring and Observability with Datadog][lil-thumbnail-url] 
+
+As systems are built— especially in this age of distributed systems and microservices— observability has become key to understanding and building reliable and highly available systems. Cloud infrastructure and microservices require so many dependencies to be functional, so it’s important to keep an eye on these different parts that keep our services up and running. In this course, Ibukun Itimi explains how to use Datadog to gain visibility into your systems to build more reliable services and infrastructure. Ibukun explains the basics of the concepts of observability infrastructure monitoring, and application performance monitoring. She covers the basics of Datadog features, including how to analyze and understand logs, create custom metrics with logs, build dashboards, set up monitors, and more.
+
 ## Instructions
 This repository has branches for each of the videos in the course. You can use the branch pop up menu in github to switch to a specific branch and take a look at the course at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
 
@@ -19,12 +22,6 @@ To resolve this issue:
 	
     Add changes to git using this command: git add .
 	Commit changes using this command: git commit -m "some message"
-
-## Installing
-1. To use these exercise files, you must have the following installed:
-	- [list of requirements for course]
-2. Clone this repository into your local machine using the terminal (Mac), CMD (Windows), or a GUI tool like SourceTree.
-3. [Course-specific instructions]
 
 # BestBags
 
@@ -186,10 +183,17 @@ Below is the color palette used in this application:
 - Copyright 2020 © [Maryam Aljanabi](https://github.com/maryamaljanabi)
 
 
+### Instructor
 
-[0]: # (Replace these placeholder URLs with actual course URLs)
+Ibukun Itimi 
+                            
+DevOps Engineer
 
-[lil-course-url]: https://www.linkedin.com/learning/
-[lil-thumbnail-url]: http://
+                            
+
+Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/ibukun-itimi).
+
+[lil-course-url]: https://www.linkedin.com/learning/monitoring-and-observability-with-datadog?dApp=59033956
+[lil-thumbnail-url]: https://cdn.lynda.com/course/2497222/2497222-1666114649962-16x9.jpg
 
 
